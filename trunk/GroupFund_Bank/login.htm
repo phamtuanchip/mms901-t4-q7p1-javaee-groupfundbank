@@ -1,0 +1,22 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Login</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="jquery-1.6.js" ></script>
+<script type="text/javascript" src="jquery-plugin.js" ></script>
+</head>
+<body>
+	<form action='Login' method='post'>
+            <input type="hidden" id='hiddenUrl' name='returnUrl' value='' />
+            <input type='text' id='username' class='login' name='username' value='Username' />
+            <input type='password' id='password' class='login' name='password' value='Password' />
+            <input type='submit' value='Submit' />
+   </form>
+   <script type="text/javascript" >
+		$.ready($("#username").focus());
+		$("input").toggleValue();
+
+	</script>
+</body>
+</html>

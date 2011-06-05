@@ -1,0 +1,41 @@
+/* 
+    Document   : Site
+    Created on : May 15, 2011, 10:34:37 AM
+    Author     : binhnx218
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+input {
+    display: block;
+}
+
+
+
+.err
+{
+    color: #F00;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
+#main-wrapper
+{
+    width: 900px;
+    margin: 0 auto;
+    padding: 0;
+    border: 1px solid #E5E5E5;
+}
