@@ -3,5 +3,7 @@ drop table "BRANCH";
 drop table "PRODUCT";
 drop table "SERVICEDESK";
 drop table "TICKET";
+drop table "QUEUE";
 drop table "USERS";
 drop table "GROUPS";
+drop table "SESSIONS";
