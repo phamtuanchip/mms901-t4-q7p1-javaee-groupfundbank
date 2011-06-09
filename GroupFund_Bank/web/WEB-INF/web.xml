@@ -40,6 +40,10 @@
         <servlet-name>NewTicket</servlet-name>
         <servlet-class>Queue.NewTicket</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BranchManager</servlet-name>
+        <servlet-class>Admin.BranchManager</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>test</servlet-name>
         <url-pattern>/test</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>NewTicket</servlet-name>
         <url-pattern>/Queue/Request</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BranchManager</servlet-name>
+        <url-pattern>/Admin/Branch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

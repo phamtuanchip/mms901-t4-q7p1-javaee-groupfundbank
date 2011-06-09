@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author user
  */
-@WebServlet(name = "Branch", urlPatterns = {"/Admin/Branch"})
-public class Branch extends HttpServlet {
+@WebServlet(name = "BranchManager", urlPatterns = {"/Admin/Branch"})
+public class BranchManager extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,10 +34,10 @@ public class Branch extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Branch</title>");  
+            out.println("<title>Servlet BranchManager</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Branch at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet BranchManager at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
