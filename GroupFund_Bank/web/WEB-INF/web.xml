@@ -62,7 +62,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>NewTicket</servlet-name>
-        <url-pattern>/RequestTicket</url-pattern>
+        <url-pattern>/Queue/Request</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

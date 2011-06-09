@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Session;
+package Entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author BinhNX
  */
 @Entity
-@Table(name = "APP.SESSIONS")
+@Table(name = "SESSIONS", catalog = "", schema = "APP")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sessions.findAll", query = "SELECT s FROM Sessions s"),
@@ -72,7 +72,7 @@ public class Sessions implements Serializable {
 
     @Override
     public String toString() {
-        return "Session.Sessions[ sessionid=" + sessionid + " ]";
+        return "Entities.Sessions[ sessionid=" + sessionid + " ]";
     }
     
 }

@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Account;
+package Entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -14,23 +15,36 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author binhnx218
+ * @author BinhNX
  */
 @Entity
-@Table(name = "APP.USERS")
+@Table(name = "USERS", catalog = "", schema = "APP")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u")})
+    @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
+    @NamedQuery(name = "Users.findByUserid", query = "SELECT u FROM Users u WHERE u.userid = :userid"),
+    @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username"),
+    @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password"),
+    @NamedQuery(name = "Users.findByBirthday", query = "SELECT u FROM Users u WHERE u.birthday = :birthday")})
 public class Users implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "BIRTHDAY")
+    @Temporal(TemporalType.DATE)
+    private Date birthday;
+    @OneToMany(mappedBy = "userid")
+    private Collection<Bankingofficer> bankingofficerCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -46,15 +60,10 @@ public class Users implements Serializable {
     @Size(min = 1, max = 64)
     @Column(name = "PASSWORD")
     private String password;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "BIRTHDAY")
-    @Temporal(TemporalType.DATE)
-    private Date birthday;
     @JoinColumn(name = "GROUPID", referencedColumnName = "GROUPID")
     @ManyToOne(optional = false)
     private Groups groupid;
-    
+
     public Users() {
     }
 
@@ -92,14 +101,6 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
     public Groups getGroupid() {
         return groupid;
     }
@@ -130,7 +131,24 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "Account.Users[ userid=" + userid + " ]";
+        return "Entities.Users[ userid=" + userid + " ]";
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    @XmlTransient
+    public Collection<Bankingofficer> getBankingofficerCollection() {
+        return bankingofficerCollection;
+    }
+
+    public void setBankingofficerCollection(Collection<Bankingofficer> bankingofficerCollection) {
+        this.bankingofficerCollection = bankingofficerCollection;
     }
     
 }
