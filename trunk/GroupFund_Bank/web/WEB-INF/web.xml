@@ -12,6 +12,10 @@
         <param-name>ServerSecurePath</param-name>
         <param-value>https://localhost:8181/GroupFund_Bank</param-value>
     </context-param>
+    <listener>
+        <description>Session Listener, for user visiting counter or store user info</description>
+        <listener-class>Session.SessionListener</listener-class>
+    </listener>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Session.LoginServlet</servlet-class>

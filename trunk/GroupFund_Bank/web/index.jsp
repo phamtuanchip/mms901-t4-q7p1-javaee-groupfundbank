@@ -16,6 +16,10 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%
+        HttpSession ss = request.getSession();
+        ss.setMaxInactiveInterval(60);
+        %>
         <div id="main-wrapper">
             <div id="header">
                 <a href="/">
