@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Account;
+package Entities;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -10,10 +10,10 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author binhnx218
+ * @author BinhNX
  */
 @Stateless
-public class GroupsFacade extends AbstractFacade<Groups> implements GroupsFacadeLocal {
+public class ServicedeskFacade extends AbstractFacade<Servicedesk> implements ServicedeskFacadeLocal {
     @PersistenceContext(unitName = "GroupFund_BankPU")
     private EntityManager em;
 
@@ -21,8 +21,8 @@ public class GroupsFacade extends AbstractFacade<Groups> implements GroupsFacade
         return em;
     }
 
-    public GroupsFacade() {
-        super(Groups.class);
+    public ServicedeskFacade() {
+        super(Servicedesk.class);
     }
     
 }

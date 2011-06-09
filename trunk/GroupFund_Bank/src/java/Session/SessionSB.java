@@ -4,9 +4,9 @@
  */
 package Session;
 
-import Account.Groups;
-import Account.Users;
-import Account.UsersFacadeLocal;
+import Entities.Groups;
+import Entities.Users;
+import Entities.UsersFacadeLocal;
 import Ultilities.Encryption;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 @LocalBean
 public class SessionSB {
 
-    public Account.Users getUserSessionInfo(HttpSession session) throws Exception
+    public Entities.Users getUserSessionInfo(HttpSession session) throws Exception
     {
         String loginKey = (String)session.getAttribute("__loginKey");
         String userInfo = (String)session.getAttribute("__userInfo");
@@ -43,7 +43,7 @@ public class SessionSB {
         }       
     }
     
-    public void setUserSessionInfo(final HttpSession session, Account.Users user) throws Exception
+    public void setUserSessionInfo(final HttpSession session, Entities.Users user) throws Exception
     {
         String encrypt = user.getGroupid().getGroupid().toString() + "_" 
                 + user.getUserid() + "_" +  user.getPassword();
@@ -61,6 +61,7 @@ public class SessionSB {
         session.removeAttribute("__userInfo");
     }
     
+    /*
     public boolean isValidUser(String username, String password) throws NamingException
     {
          UsersFacadeLocal usersFacade = (UsersFacadeLocal) new InitialContext().lookup("java:module/UsersFacade");
@@ -80,4 +81,6 @@ public class SessionSB {
         if (u==null) return null;
         else return u;
     }
+     * 
+     */
 }

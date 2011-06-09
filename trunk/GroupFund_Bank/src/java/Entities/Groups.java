@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Account;
+package Entities;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -22,13 +22,16 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author binhnx218
+ * @author BinhNX
  */
 @Entity
-@Table(name = "APP.GROUPS")
+@Table(name = "GROUPS", catalog = "", schema = "APP")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Groups.findAll", query = "SELECT g FROM Groups g")})
+    @NamedQuery(name = "Groups.findAll", query = "SELECT g FROM Groups g"),
+    @NamedQuery(name = "Groups.findByGroupid", query = "SELECT g FROM Groups g WHERE g.groupid = :groupid"),
+    @NamedQuery(name = "Groups.findByGroupname", query = "SELECT g FROM Groups g WHERE g.groupname = :groupname"),
+    @NamedQuery(name = "Groups.findByGroupdescription", query = "SELECT g FROM Groups g WHERE g.groupdescription = :groupdescription")})
 public class Groups implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -114,7 +117,7 @@ public class Groups implements Serializable {
 
     @Override
     public String toString() {
-        return "Account.Groups[ groupid=" + groupid + " ]";
+        return "Entities.Groups[ groupid=" + groupid + " ]";
     }
     
 }

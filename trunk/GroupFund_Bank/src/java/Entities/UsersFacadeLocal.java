@@ -2,14 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Account;
+package Entities;
 
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author binhnx218
+ * @author BinhNX
  */
 @Local
 public interface UsersFacadeLocal {
@@ -27,10 +27,5 @@ public interface UsersFacadeLocal {
     List<Users> findRange(int[] range);
 
     int count();
-
-    boolean isValidUser(String username, String password);
     
-    boolean isValidUser(Account.Users user);
-
-    Users getUserInfo(java.lang.String username, java.lang.String password);    
 }

@@ -4,6 +4,8 @@
  */
 package Session;
 
+import Entities.SessionsFacadeLocal;
+import Entities.Sessions;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;

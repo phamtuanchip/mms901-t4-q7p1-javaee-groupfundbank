@@ -10,5 +10,5 @@
         <property name="URL" value="jdbc:derby://localhost:1527/GroupFund"/>
         <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
     </jdbc-connection-pool>
-    <jdbc-resource enabled="true" jndi-name="GF" object-type="user" pool-name="derby_net_GroupFund_adminPool_1"/>
+    <jdbc-resource enabled="true" jndi-name="GroupFund" object-type="user" pool-name="derby_net_GroupFund_adminPool_1"/>
 </resources>

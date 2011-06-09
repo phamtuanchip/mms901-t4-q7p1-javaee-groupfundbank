@@ -31,6 +31,7 @@ public class LoginServlet extends HttpServlet {
     String _serverSecurePath;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, Exception {
+        /*
         _serverPath = this.getServletContext().getInitParameter("ServerPath");
         _serverSecurePath = this.getServletContext().getInitParameter("ServerSecurePath");
         HttpSession session = request.getSession();
@@ -39,7 +40,7 @@ public class LoginServlet extends HttpServlet {
         String returnUrl = (request.getParameter("returnUrl") != null ?
                         request.getParameter("returnUrl") : _serverPath + "/index.jsp");
         SessionSB sessionMng = (SessionSB)new InitialContext().lookup("java:module/SessionSB");
-        Account.Users u = sessionMng.getUserSessionInfo(session);
+        Entities.Users u = sessionMng.getUserSessionInfo(session);
         if (u != null)
         {
             if (sessionMng.isValidUser(u))
@@ -68,6 +69,8 @@ public class LoginServlet extends HttpServlet {
             out.println("<script type='text/javascript'>$.ready($('#username').focus());$('input').toggleValue();</script>");
             out.println("</body>");         
         }
+         * 
+         */
     }
     
 
@@ -106,6 +109,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        /*
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         try
@@ -129,7 +133,7 @@ public class LoginServlet extends HttpServlet {
                     salt = hash.MD5(salt);
                     // Thu cho muoi 2 lan xem man den dau :D
                     password = hash.SHA256(hash.SHA256(salt) + hash.SHA256(salt + hash.MD5( (username + password ))));
-                    Account.Users usr = (sessionMng.getUserInfo(username, password));
+                    Entities.Users usr = (sessionMng.getUserInfo(username, password));
                     if (usr != null)        
                     {
                         sessionMng.setUserSessionInfo(request.getSession(), usr);
@@ -156,6 +160,8 @@ public class LoginServlet extends HttpServlet {
         {
             out.close();
         }
+         * 
+         */
     }
 
     /** 

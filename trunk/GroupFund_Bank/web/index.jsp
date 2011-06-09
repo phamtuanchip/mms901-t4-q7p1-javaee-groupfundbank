@@ -6,8 +6,6 @@
 
 <%@page import="javax.naming.InitialContext"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Account.Users" %>
-<%@page import="Account.UsersFacadeLocal" %>
 <!DOCTYPE html>
 <html>
     <head>
