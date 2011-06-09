@@ -17,6 +17,7 @@
             Service Desk Code :<input type="text" name="servicedeskcode">
             <input type="submit" value="Search">
         </form>
+        <a href="createservicedesk.jsp">Create Service Desk</a>
         <a href="">List Service Desk</a>
         <a href="index.jsp">Back</a>
     </body>

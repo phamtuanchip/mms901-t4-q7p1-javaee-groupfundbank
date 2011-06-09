@@ -17,7 +17,7 @@
             <h2><a href="branchmanager.jsp">Branch Manager</a></h2>
             <h2><a href="productsmanager.jsp">Product Manager</a></h2>
             <h2><a href="servicedeskmanager.jsp">Service Desk Manager</a></h2>
-            <h2><a href="bankingofficemanager.jsp">Banking Officer Manager</a></h2>
+            <h2><a href="bankingofficermanager.jsp">Banking Officer Manager</a></h2>
             <h2><a href="queuemanager.jsp">Queue Manager</a></h2>
         </div>
     </body>

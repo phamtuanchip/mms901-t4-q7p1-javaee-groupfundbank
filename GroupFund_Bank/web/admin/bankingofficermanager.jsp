@@ -12,13 +12,14 @@
         <title>Banking Office Manager Page</title>
     </head>
     <body>
-        <h1>Banking Office</h1>
+        <h1>Banking Officer</h1>
         <form action="" method="post">
             Banking Office First Name :<input type="text" name="bankingofficefname">
             Banking Office Last Name :<input type="text" name="bankingofficelname">
             <input type="submit" value="Search">
         </form>
-        <a href="">List Banking Office</a>
+        <a href="createbankingofficer.jsp">Create Banking Officer</a>
+        <a href="">List Banking Officer</a>
         <a href="index.jsp">Back</a>
     </body>
 </html>

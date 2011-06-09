@@ -17,6 +17,7 @@
             Product Name :<input type="text" name="productname">
             <input type="submit" value="Search">
         </form>
+        <a href="createproduct.jsp">Create Product</a>
         <a href="">List Product</a>
         <a href="index.jsp">Back</a>
     </body>

@@ -17,6 +17,7 @@
             Branch Name :<input type="text" name="branchname">
             <input type="submit" value="Search">
         </form>
+        <a href="createbranch.jsp">Create Branch</a>
         <a href="">List Branch</a>
         <a href="index.jsp">Back</a>
     </body>
