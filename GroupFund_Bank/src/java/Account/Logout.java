@@ -2,10 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Session;
+package Account;
 
+import Session.SessionSB;
+import Session.SessionSB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author binhnx218
  */
-public class test extends HttpServlet {
+public class Logout extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,10 +38,10 @@ public class test extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet test</title>");  
+            out.println("<title>Servlet Logout</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet test at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet Logout at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
@@ -55,7 +61,14 @@ public class test extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        SessionSB sessionMng;
+        try {
+            sessionMng = (SessionSB)new InitialContext().lookup("java:module/SessionSB");
+            sessionMng.clearUserSessionInfo(request.getSession());
+        } catch (NamingException ex) {
+            Logger.getLogger(Logout.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /** 
@@ -68,11 +81,7 @@ public class test extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-                response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.print("gdgd <br />");
-        out.print(request.getParameter("password"));
+        processRequest(request, response);
     }
 
     /** 

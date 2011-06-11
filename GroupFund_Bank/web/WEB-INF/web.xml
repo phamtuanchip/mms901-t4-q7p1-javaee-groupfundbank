@@ -18,11 +18,7 @@
     </listener>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>Session.LoginServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>test</servlet-name>
-        <servlet-class>Session.test</servlet-class>
+        <servlet-class>Account.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Error</servlet-name>
@@ -30,7 +26,7 @@
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
-        <servlet-class>Session.Logout</servlet-class>
+        <servlet-class>Account.Logout</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SessionExample</servlet-name>
@@ -44,10 +40,6 @@
         <servlet-name>BranchManager</servlet-name>
         <servlet-class>Admin.BranchManager</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>test</servlet-name>
-        <url-pattern>/test</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Account/LoginAuth</url-pattern>
