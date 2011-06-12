@@ -7,6 +7,7 @@ package Entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author BinhNX
  */
 @Entity
-@Table(name = "SERVICEDESK", catalog = "", schema = "APP")
+@Table(name = "APP.SERVICEDESK")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Servicedesk.findAll", query = "SELECT s FROM Servicedesk s"),
@@ -44,6 +45,8 @@ public class Servicedesk implements Serializable {
     @NotNull
     @Column(name = "ISACTIVE")
     private short isactive;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "servicedeskcode")
+    private Collection<Ticket> ticketCollection;
     @JoinColumn(name = "PRODUCTID", referencedColumnName = "PRODUCTID")
     @ManyToOne(optional = false)
     private Product productid;
@@ -79,6 +82,15 @@ public class Servicedesk implements Serializable {
 
     public void setIsactive(short isactive) {
         this.isactive = isactive;
+    }
+
+    @XmlTransient
+    public Collection<Ticket> getTicketCollection() {
+        return ticketCollection;
+    }
+
+    public void setTicketCollection(Collection<Ticket> ticketCollection) {
+        this.ticketCollection = ticketCollection;
     }
 
     public Product getProductid() {

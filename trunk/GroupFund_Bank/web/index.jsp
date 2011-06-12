@@ -14,6 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="banner.jsp" %>
         <%
         HttpSession ss = request.getSession();
         ss.setMaxInactiveInterval(60);
@@ -25,5 +26,6 @@
                 </a>
             </div>
         </div>
+        <%@include file="fotter.jsp" %>
     </body>
 </html>

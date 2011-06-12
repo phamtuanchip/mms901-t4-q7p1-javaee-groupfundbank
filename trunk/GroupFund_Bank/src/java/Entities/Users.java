@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author BinhNX
  */
 @Entity
-@Table(name = "USERS", catalog = "", schema = "APP")
+@Table(name = "APP.USERS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
@@ -38,13 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password"),
     @NamedQuery(name = "Users.findByBirthday", query = "SELECT u FROM Users u WHERE u.birthday = :birthday")})
 public class Users implements Serializable {
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "BIRTHDAY")
-    @Temporal(TemporalType.DATE)
-    private Date birthday;
-    @OneToMany(mappedBy = "userid")
-    private Collection<Bankingofficer> bankingofficerCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -60,9 +54,18 @@ public class Users implements Serializable {
     @Size(min = 1, max = 64)
     @Column(name = "PASSWORD")
     private String password;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "BIRTHDAY")
+    @Temporal(TemporalType.DATE)
+    private Date birthday;
     @JoinColumn(name = "GROUPID", referencedColumnName = "GROUPID")
     @ManyToOne(optional = false)
     private Groups groupid;
+    @OneToMany(mappedBy = "userid")
+    private Collection<Bankingofficer> bankingofficerCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
+    private Collection<Queue> queueCollection;
 
     public Users() {
     }
@@ -101,12 +104,38 @@ public class Users implements Serializable {
         this.password = password;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     public Groups getGroupid() {
         return groupid;
     }
 
     public void setGroupid(Groups groupid) {
         this.groupid = groupid;
+    }
+
+    @XmlTransient
+    public Collection<Bankingofficer> getBankingofficerCollection() {
+        return bankingofficerCollection;
+    }
+
+    public void setBankingofficerCollection(Collection<Bankingofficer> bankingofficerCollection) {
+        this.bankingofficerCollection = bankingofficerCollection;
+    }
+
+    @XmlTransient
+    public Collection<Queue> getQueueCollection() {
+        return queueCollection;
+    }
+
+    public void setQueueCollection(Collection<Queue> queueCollection) {
+        this.queueCollection = queueCollection;
     }
 
     @Override
@@ -132,23 +161,6 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return "Entities.Users[ userid=" + userid + " ]";
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    @XmlTransient
-    public Collection<Bankingofficer> getBankingofficerCollection() {
-        return bankingofficerCollection;
-    }
-
-    public void setBankingofficerCollection(Collection<Bankingofficer> bankingofficerCollection) {
-        this.bankingofficerCollection = bankingofficerCollection;
     }
     
 }
