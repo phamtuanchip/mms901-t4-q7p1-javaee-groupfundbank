@@ -17,6 +17,7 @@ public class SessionsFacade extends AbstractFacade<Sessions> implements Sessions
     @PersistenceContext(unitName = "GroupFund_BankPU")
     private EntityManager em;
 
+    @Override
     protected EntityManager getEntityManager() {
         return em;
     }
