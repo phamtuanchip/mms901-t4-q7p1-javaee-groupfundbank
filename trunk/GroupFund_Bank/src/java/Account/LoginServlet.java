@@ -4,7 +4,7 @@
  */
 package Account;
 
-import Ultilities.Hash;
+import Utilities.Encryption.Hash;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.naming.InitialContext;

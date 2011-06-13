@@ -7,7 +7,7 @@ package Session;
 import Entities.Groups;
 import Entities.Users;
 import Entities.UsersFacadeLocal;
-import Ultilities.Encryption;
+import Utilities.Encryption.Encryption;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.naming.InitialContext;
@@ -47,7 +47,7 @@ public class SessionSB {
     {
         String encrypt = user.getGroupid().getGroupid().toString() + "_" 
                 + user.getUserid() + "_" +  user.getPassword();
-        Ultilities.Encryption enc = new Encryption();
+        Utilities.Encryption.Encryption enc = new Encryption();
         String loginKey = enc.init();
         String[] result = enc.encrypt(loginKey, encrypt);
         String encrypted = result[0] + "_" + result[1];

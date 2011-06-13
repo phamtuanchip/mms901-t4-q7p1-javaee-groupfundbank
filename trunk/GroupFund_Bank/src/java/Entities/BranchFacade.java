@@ -17,6 +17,7 @@ public class BranchFacade extends AbstractFacade<Branch> implements BranchFacade
     @PersistenceContext(unitName = "GroupFund_BankPU")
     private EntityManager em;
 
+    @Override
     protected EntityManager getEntityManager() {
         return em;
     }
