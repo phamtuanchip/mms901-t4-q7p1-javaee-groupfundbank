@@ -36,7 +36,9 @@ public class NumberValidation extends Validation{
     private NumberType _type = NumberType.Integer;
     private String _validationClass = "vld-number";
     private String _validationMsg = "The {0} field must be a {1} number";
-    
+
+    public NumberValidation() {
+    }
     public NumberValidation(NumberType type)
     {
         _type = type;
@@ -44,7 +46,8 @@ public class NumberValidation extends Validation{
     
     @Override
     public String getValidationMsg() {
-        return _validationMsg.replace("{1}", _type.toString());
+        String validationMsg = _validationMsg.replace("{1}", _type.toString());
+        return "data-val-num = " + _type.toString() + " data-val-num-msg = " + validationMsg;
     }
 
     @Override

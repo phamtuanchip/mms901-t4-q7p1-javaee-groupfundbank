@@ -6,11 +6,11 @@
     </context-param>
     <context-param>
         <param-name>ServerPath</param-name>
-        <param-value>http://localhost:8080/GroupFund_Bank</param-value>
+        <param-value>http://localhost:8080</param-value>
     </context-param>
     <context-param>
         <param-name>ServerSecurePath</param-name>
-        <param-value>https://localhost:8181/GroupFund_Bank</param-value>
+        <param-value>https://localhost:8181</param-value>
     </context-param>
     <listener>
         <description>Session Listener, for user visiting counter or store user info</description>
@@ -40,6 +40,38 @@
         <servlet-name>BranchManager</servlet-name>
         <servlet-class>Admin.BranchManager</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserManager</servlet-name>
+        <servlet-class>Admin.UserManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin.Branch.Create</servlet-name>
+        <jsp-file>/Admin/Branch/Create.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin.Branch.Edit</servlet-name>
+        <jsp-file>/Admin/Branch/Edit.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin.Branch.List</servlet-name>
+        <jsp-file>/Admin/Branch/List.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin.Branch.Search</servlet-name>
+        <jsp-file>/Admin/Branch/Search.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Home.About.General</servlet-name>
+        <jsp-file>/About/General.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Home.Products.Groups</servlet-name>
+        <jsp-file>/Products/Groups.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>BranchAdd</servlet-name>
+        <servlet-class>Admin.BranchAdd</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Account/LoginAuth</url-pattern>
@@ -57,12 +89,65 @@
         <url-pattern>/SessionExample</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>NewTicket</servlet-name>
-        <url-pattern>/Queue/Request</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>BranchManager</servlet-name>
         <url-pattern>/Admin/Branch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserManager</servlet-name>
+        <url-pattern>/Admin/Users</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin.Branch.Create</servlet-name>
+        <url-pattern>/Admin/Branch/create.jsp</url-pattern>
+        <url-pattern>/Admin/Branch/create</url-pattern>
+        <url-pattern>/Admin/Branch/Create.jsp</url-pattern>
+        <url-pattern>/Admin/Branch/Create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin.Branch.Edit</servlet-name>
+        <url-pattern>/Admin/Branch/Edit.jsp</url-pattern>
+        <url-pattern>/Admin/Branch/Edit</url-pattern>
+        <url-pattern>/Admin/Branch/edit.jsp</url-pattern>
+        <url-pattern>/Admin/Branch/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin.Branch.List</servlet-name>
+        <url-pattern>/Admin/Branch/list.jsp</url-pattern>
+        <url-pattern>/Admin/Branch/List.jsp</url-pattern>
+        <url-pattern>/Admin/Branch/list</url-pattern>
+        <url-pattern>/Admin/Branch/List</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin.Branch.Search</servlet-name>
+        <url-pattern>/Admin/Branch/search.jsp</url-pattern>
+        <url-pattern>/Admin/Branch/Search</url-pattern>
+        <url-pattern>/Admin/Branch/Search.jsp</url-pattern>
+        <url-pattern>/Admin/Branch/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Home.About.General</servlet-name>
+        <url-pattern>/About/general.jsp</url-pattern>
+        <url-pattern>/About</url-pattern>
+        <url-pattern>/About/General</url-pattern>
+        <url-pattern>/About/General.jsp</url-pattern>
+        <url-pattern>/About/general</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Home.Products.Groups</servlet-name>
+        <url-pattern>/Products</url-pattern>
+        <url-pattern>/Products/groups.jsp</url-pattern>
+        <url-pattern>/Products/Groups.jsp</url-pattern>
+        <url-pattern>/Products/groups</url-pattern>
+        <url-pattern>/Products/Groups</url-pattern>
+        <url-pattern>/product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewTicket</servlet-name>
+        <url-pattern>/Account/NewTicket.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BranchAdd</servlet-name>
+        <url-pattern>/Branch.Add.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -83,4 +168,16 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+    <context-param>
+        <param-name>ContextPath</param-name>
+        <param-value>/GroupFund_Bank/</param-value>
+    </context-param>
+    <filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>

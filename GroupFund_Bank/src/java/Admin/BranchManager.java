@@ -7,14 +7,17 @@ package Admin;
 import Entities.Branch;
 import Entities.BranchFacadeLocal;
 import Utilities.Html.HtmlHelperLocal;
-import Utilities.Validation.NumberValidation;
-import Utilities.Validation.RequiredValidation;
+import Utilities.Validation.RangeValidation;
 import Utilities.Validation.Validation;
 import Utilities.Validation.ValidationHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJBException;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +41,7 @@ public class BranchManager extends HttpServlet {
     private static enum Action {
         List, Search, Create, Update, Delete 
     };
-    Action action = Action.Search;
+    private Action action = Action.Search;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             String act = request.getParameter("act") ;
@@ -63,7 +66,6 @@ public class BranchManager extends HttpServlet {
             {
                 action = Action.List;
             }
-            printLayout(request, response);
             /* TODO output your page here
             
              */
@@ -80,7 +82,9 @@ public class BranchManager extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //response.
         processRequest(request, response);
+        printLayout(request, response);
     }
 
     /** 
@@ -94,6 +98,57 @@ public class BranchManager extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        switch (action)
+        {
+            case Search:
+            {
+                //TODO: Search
+                break;
+            }
+            case List:
+            {
+                printLayout(request, response);
+                break;
+            }
+            case Create:
+            {
+                PrintWriter pw = response.getWriter();
+                pw.println("Test dispatcher");
+                       
+                String name =  request.getParameter("BranchName");
+                String location = request.getParameter("BranchLocation");
+                String phone = request.getParameter("BranchPhone");
+                System.out.println(name);
+                System.out.println(location);
+                System.out.println(phone);
+                try {
+                    BranchFacadeLocal branchFacade = (BranchFacadeLocal) new InitialContext().lookup("java:module/BranchFacade");
+                    
+                    Branch newBranch = new Branch();
+                    //newBranch.setBranchid(2);
+                    newBranch.setBranchname(name);
+                    newBranch.setBranchlocation(location);
+                    newBranch.setBranchphone(phone);
+                    //branchFacade.
+                    branchFacade.create(newBranch);
+                } catch (NamingException ex) {
+                    Logger.getLogger(BranchManager.class.getName()).log(Level.SEVERE, null, ex); 
+                } catch (EJBException ex)
+                {
+                    RequestDispatcher rd = request.getRequestDispatcher("Users");
+                    
+                    rd.forward(request, response);
+                    
+                }
+                break;
+            }
+            default:
+            {
+                break;
+            }
+                
+        }
+        
     }
 
     /** 
@@ -117,66 +172,49 @@ public class BranchManager extends HttpServlet {
                 case Search:
                 {
                     out.println("<title>Search for branches</title>");
+                    out.println("</head>");
+                    out.println("<body>");
+                    getSearch(request, response);
                     break;
                 }
                 case List:
                 {
                     out.println("<title>Branch List</title>");
-                    break;
-                }
-                case Update:
-                {
-                    out.println("<title>Update branch</title>");
-                    break;
-                }
-                case Create:
-                {
-                    out.println("<title>Create branch</title>");
-                    break;
-                }
-                case Delete:
-                {
-                    out.println("<title>Delete branch</title>");
-                    break;
-                }
-                default:
-                {
-                    out.println("<title>Search for branches</title>");
-                    break;
-                }
-            }
-            out.println("</head>");
-            out.println("<body>");
-            switch (action)
-            {
-                case Search:
-                {
-                    search(request, response);
-                    break;
-                }
-                case List:
-                {
+                    out.println("</head>");
+                    out.println("<body>");
                     list(request, response);
                     break;
                 }
                 case Update:
                 {
-                    update(request, response);
+                    out.println("<title>Update branch</title>");
+                    out.println("</head>");
+                    out.println("<body>");
+                    getUpdate(request, response);
                     break;
                 }
                 case Create:
                 {
-                    create(request, response);
+                    out.println("<title>Create branch</title>");
+                    out.println("</head>");
+                    out.println("<body>");
+                    getCreate(request, response);
                     break;
                 }
                 case Delete:
                 {
-                    delete(request, response);
+                    out.println("<title>Delete branch</title>");
+                    out.println("</head>");
+                    out.println("<body>");
+                    getDelete(request, response);
                     break;
                 }
                 default:
                 {
-                    search(request, response);
+                    out.println("<title>Search for branches</title>");
+                    out.println("</head>");
+                    out.println("<body>");
+                    getSearch(request, response);
                     break;
                 }
             }
@@ -192,19 +230,19 @@ public class BranchManager extends HttpServlet {
             //out.close();
         }
     }
-    private void create(HttpServletRequest request, HttpServletResponse response) throws IOException, NamingException
+    private void getCreate(HttpServletRequest request, HttpServletResponse response) throws IOException, NamingException
     {
         HtmlHelperLocal HtmlHelper = (HtmlHelperLocal) new InitialContext().lookup("java:module/HtmlHelper");
         PrintWriter out = response.getWriter();
         out.print("<div id='main'>");
         HtmlHelper.BeginForm(request, response, "Create Branch");
         HtmlHelper.EditorFor(out, "BranchName", "Name");
-        HtmlHelper.EditorFor(out, "BrachLocation", "Location");
+        HtmlHelper.EditorFor(out, "BranchLocation", "Location");
         HtmlHelper.EditorFor(out, "BranchPhone", "Phone");
         HtmlHelper.EndForm(out, "Create");
         out.print("</div>");
     }
-    private void update(HttpServletRequest request, HttpServletResponse response) throws IOException, NamingException
+    private void getUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException, NamingException, Exception
     {
         PrintWriter out = response.getWriter();
         int id = 0;
@@ -224,21 +262,18 @@ public class BranchManager extends HttpServlet {
         }
         if (error == 0)
         {
-            Validation rev = new NumberValidation(NumberValidation.NumberType.Real);
+            Validation rev = new RangeValidation(5, 100);
             ValidationHelper helper = new ValidationHelper();
             helper.add(rev);
             Branch branch = branchFacade.find(id);
             if (branch != null)
             {
-            HtmlHelper.BeginForm(request, response, "Create Branch");
+            HtmlHelper.BeginForm(request, response, "Update Branch");
             HtmlHelper.EditorFor(out, "BranchName", "Name", branch.getBranchname());
-            HtmlHelper.EditorFor(out, "BrachLocation", "Location", branch.getBranchlocation());
+            HtmlHelper.EditorFor(out, "BranchLocation", "Location", branch.getBranchlocation());
             HtmlHelper.EditorFor(out, "BranchPhone", "Phone", branch.getBranchphone());
-            HtmlHelper.EndForm(out, "Create");
-            out.print(helper.getvalidationList().get(0).getClass().getName());
-            out.print(helper.getvalidationList().get(0).getValidationMsg());
-            //out.print(helper.getvalidationList().get(1).getClass().getName());
-            //out.print(helper.getvalidationList().get(1).getValidationClass());
+            HtmlHelper.EndForm(out, "Update");
+            out.print(((RangeValidation)helper.getvalidationList().get(0)).getMinValue());
             }
             else
             {
@@ -247,16 +282,18 @@ public class BranchManager extends HttpServlet {
         }
         out.print("</div>");
     }
-    private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException
+    private void getDelete(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
         PrintWriter out = response.getWriter();
     }
-    private void search(HttpServletRequest request, HttpServletResponse response) throws IOException
+    private void getSearch(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
         PrintWriter out = response.getWriter();
     }
-    private void list(HttpServletRequest request, HttpServletResponse response) throws IOException
+    private void list(HttpServletRequest request, HttpServletResponse response) throws IOException, NamingException
     {
         PrintWriter out = response.getWriter();
+        HtmlHelperLocal HtmlHelper = (HtmlHelperLocal) new InitialContext().lookup("java:module/HtmlHelper");
+        //HtmlHelper.DisplayError(HtmlHelperLocal.AppError.InputUrlParameter, response, null, null);
     }
 }

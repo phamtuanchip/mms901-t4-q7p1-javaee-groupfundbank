@@ -56,23 +56,7 @@ public class NewTicket extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        if (false)
-            response.sendRedirect(this.getServletContext().getInitParameter("ServerPath")+"/Account/Login.jsp?return=/Queue/Request");
-        else
-        {
-            PrintWriter out = response.getWriter();
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NewTicket</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.print("<select>");
-            out.print("<option value=0>- Select a branch -</option>");
-            out.print("</select>");
-            out.println("</body>");
-            out.println("</html>");
-            
-        }
+        request.getRequestDispatcher("").forward(request, response);
     }
 
     /** 
@@ -85,14 +69,7 @@ public class NewTicket extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
-    
-    
-    private void renderPage(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        
     }
 
     /** 

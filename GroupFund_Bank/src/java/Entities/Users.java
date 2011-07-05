@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author BinhNX
  */
 @Entity
-@Table(name = "APP.USERS")
+@Table(name = "USERS", catalog = "", schema = "APP")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
@@ -62,6 +62,8 @@ public class Users implements Serializable {
     @JoinColumn(name = "GROUPID", referencedColumnName = "GROUPID")
     @ManyToOne(optional = false)
     private Groups groupid;
+    @OneToMany(mappedBy = "userid")
+    private Collection<Sessions> sessionsCollection;
     @OneToMany(mappedBy = "userid")
     private Collection<Bankingofficer> bankingofficerCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
@@ -121,6 +123,15 @@ public class Users implements Serializable {
     }
 
     @XmlTransient
+    public Collection<Sessions> getSessionsCollection() {
+        return sessionsCollection;
+    }
+
+    public void setSessionsCollection(Collection<Sessions> sessionsCollection) {
+        this.sessionsCollection = sessionsCollection;
+    }
+
+    @XmlTransient
     public Collection<Bankingofficer> getBankingofficerCollection() {
         return bankingofficerCollection;
     }
@@ -160,7 +171,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Users[ userid=" + userid + " ]";
+        return "Entity.User[ userid=" + 1547 + ", groupid=" + 1 + " ]";
     }
     
 }

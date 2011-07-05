@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,13 +29,14 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author BinhNX
  */
 @Entity
-@Table(name = "APP.PRODUCT")
+@Table(name = "PRODUCT", catalog = "", schema = "APP")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
     @NamedQuery(name = "Product.findByProductid", query = "SELECT p FROM Product p WHERE p.productid = :productid"),
     @NamedQuery(name = "Product.findByProductname", query = "SELECT p FROM Product p WHERE p.productname = :productname"),
-    @NamedQuery(name = "Product.findByProductdescription", query = "SELECT p FROM Product p WHERE p.productdescription = :productdescription")})
+    @NamedQuery(name = "Product.findByProductdescription", query = "SELECT p FROM Product p WHERE p.productdescription = :productdescription"),
+    @NamedQuery(name = "Product.findByProductGroup", query = "SELECT p FROM Product p WHERE p.productgroupid.productgroupid = :productgroupid")})
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,7 +47,7 @@ public class Product implements Serializable {
     private Integer productid;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 50)
     @Column(name = "PRODUCTNAME")
     private String productname;
     @Basic(optional = false)
@@ -54,6 +57,9 @@ public class Product implements Serializable {
     private String productdescription;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productid")
     private Collection<Servicedesk> servicedeskCollection;
+    @JoinColumn(name = "PRODUCTGROUPID", referencedColumnName = "PRODUCTGROUPID")
+    @ManyToOne(optional = false)
+    private Productgroup productgroupid;
 
     public Product() {
     }
@@ -99,6 +105,14 @@ public class Product implements Serializable {
 
     public void setServicedeskCollection(Collection<Servicedesk> servicedeskCollection) {
         this.servicedeskCollection = servicedeskCollection;
+    }
+
+    public Productgroup getProductgroupid() {
+        return productgroupid;
+    }
+
+    public void setProductgroupid(Productgroup productgroupid) {
+        this.productgroupid = productgroupid;
     }
 
     @Override

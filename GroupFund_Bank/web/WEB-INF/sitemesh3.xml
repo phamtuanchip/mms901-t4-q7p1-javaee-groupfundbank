@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : sitemesh3.xml
+    Created on : July 3, 2011, 10:42 AM
+    Author     : BinhNX
+    Description:
+        Purpose of the document follows.
+-->
+
+<sitemesh>
+    <!-- Exclude path from decoration. -->
+  <mapping path="/javadoc/*" exclue="true"/>
+  <mapping path="/brochures/*" exclue="true"/>
+  
+    <!-- Map default decorator. This shall be applied to all paths if no other paths match. -->
+  <mapping decorator="/Template/Layout.jsp"/>
+
+  <!-- Map decorators to path patterns. -->
+  <mapping path="/Admin/*" decorator="/Template/Admin.jsp"/>
+  <mapping path="/About/*" decorator="/Template/About.jsp"/>
+
+  <!-- Alternative convention. This is more verbose but allows multiple decorators 
+       to be applied to a single path. -->
+  <mapping>
+    <path>/articles/*</path>
+    <decorator>/decorators/article.html</decorator>
+    <decorator>/decorators/two-page-layout.html</decorator>
+    <decorator>/decorators/common.html</decorator>
+  </mapping>
+</sitemesh>

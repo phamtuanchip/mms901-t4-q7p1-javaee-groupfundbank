@@ -9,6 +9,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -21,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author BinhNX
  */
 @Entity
-@Table(name = "APP.SESSIONS")
+@Table(name = "SESSIONS", catalog = "", schema = "APP")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sessions.findAll", query = "SELECT s FROM Sessions s"),
@@ -34,6 +36,12 @@ public class Sessions implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "SESSIONID")
     private String sessionid;
+    @JoinColumn(name = "USERID", referencedColumnName = "USERID")
+    @ManyToOne
+    private Users userid;
+    @JoinColumn(name = "GROUPNAME", referencedColumnName = "GROUPNAME")
+    @ManyToOne(optional = false)
+    private Groups groupname;
 
     public Sessions() {
     }
@@ -48,6 +56,22 @@ public class Sessions implements Serializable {
 
     public void setSessionid(String sessionid) {
         this.sessionid = sessionid;
+    }
+
+    public Users getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Users userid) {
+        this.userid = userid;
+    }
+
+    public Groups getGroupname() {
+        return groupname;
+    }
+
+    public void setGroupname(Groups groupname) {
+        this.groupname = groupname;
     }
 
     @Override
