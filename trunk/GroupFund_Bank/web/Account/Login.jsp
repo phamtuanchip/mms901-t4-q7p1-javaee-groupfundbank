@@ -19,10 +19,11 @@
         <form action='<%=application.getInitParameter("ServerSecurePath") + "/Account/LoginAuth"%>' method='post' onsubmit="return validate()">
             <input type="hidden" id='hiddenUrl' name='returnUrl' value='<%=request.getParameter("returnUrl")%>' />
             <input type='text' id='username' class='login require-validation' name='username' value='Username' />
+            <input type='text' id='username1' name='username1' />
             <label style="display:none" class='err require-validation-err'>Username must not empty</label>
             <input type='password' id='password' class='login require-validation' name='password' value='Password' />
             <label style="display:none" class='err require-validation-err'>Password must not empty</label>
-            <input type='submit' value='Submit' />
+            <input type='submit' value='Submit' onsubmit='return validate()' />
         </form>
                     <label><%=
                     request.getContextPath() +
@@ -41,8 +42,13 @@
                         $("#username").focus();
                     $(document).data("ready", true);
                 });
-                $("input").toggleValue();
-
+                $("input").toggleValue(); 
+                function validate(){
+                    if(document.getElementsByName("username1")[0].value.length == 0){
+                        alert("The username field cannot remain blank.");
+                        return false;
+                        }
+                }
 	</script>
     </body>
 </html>

@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Local
 public interface HtmlHelperLocal {
+
+    public void EditorFor(java.lang.Class<?> cls);
     public enum AppError
     {
         InputUrlParameter,

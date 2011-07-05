@@ -11,10 +11,15 @@ package Utilities.Validation;
 public class RequiredValidation extends Validation {
     private String _validationClass = "vld-required";
     private String _validationMsg = "The {0} field is required";
-    
+
+    public RequiredValidation() {
+    }
+    public RequiredValidation(String validationMsg) {
+        _validationMsg = validationMsg;
+    }
     @Override
     public String getValidationMsg() {
-        return _validationMsg;
+        return "data-val-required-msg = " + _validationMsg;
     }
 
     @Override

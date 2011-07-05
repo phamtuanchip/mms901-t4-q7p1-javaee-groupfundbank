@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author BinhNX
  */
 @Entity
-@Table(name = "APP.GROUPS")
+@Table(name = "GROUPS", catalog = "", schema = "APP")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Groups.findAll", query = "SELECT g FROM Groups g"),
@@ -49,6 +49,8 @@ public class Groups implements Serializable {
     private String groupdescription;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupid")
     private Collection<Users> usersCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupname")
+    private Collection<Sessions> sessionsCollection;
 
     public Groups() {
     }
@@ -93,6 +95,15 @@ public class Groups implements Serializable {
 
     public void setUsersCollection(Collection<Users> usersCollection) {
         this.usersCollection = usersCollection;
+    }
+
+    @XmlTransient
+    public Collection<Sessions> getSessionsCollection() {
+        return sessionsCollection;
+    }
+
+    public void setSessionsCollection(Collection<Sessions> sessionsCollection) {
+        this.sessionsCollection = sessionsCollection;
     }
 
     @Override

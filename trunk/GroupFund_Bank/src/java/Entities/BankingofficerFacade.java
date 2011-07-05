@@ -17,7 +17,6 @@ public class BankingofficerFacade extends AbstractFacade<Bankingofficer> impleme
     @PersistenceContext(unitName = "GroupFund_BankPU")
     private EntityManager em;
 
-    @Override
     protected EntityManager getEntityManager() {
         return em;
     }

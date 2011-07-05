@@ -4,6 +4,7 @@
  */
 package Entities;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,6 +18,7 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
     @PersistenceContext(unitName = "GroupFund_BankPU")
     private EntityManager em;
 
+    @Override
     protected EntityManager getEntityManager() {
         return em;
     }
@@ -25,4 +27,12 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
         super(Product.class);
     }
     
+ 
+    @Override
+    public List<Product> getProductList(int productGroup)
+    {
+        return em.createNamedQuery("Product.findByProductGroup")
+                .setParameter("productgroupid", productGroup)
+                .getResultList();
+    }
 }

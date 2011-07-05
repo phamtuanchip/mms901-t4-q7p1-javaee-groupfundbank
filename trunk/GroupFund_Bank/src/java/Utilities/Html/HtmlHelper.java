@@ -7,6 +7,9 @@ package Utilities.Html;
 import Utilities.Validation.ValidationHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Method;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +22,19 @@ import javax.servlet.http.HttpServletResponse;
 public class HtmlHelper implements HtmlHelperLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    public void EditorFor(Class<?> cls)
+    {
+        try {
+            Method mt = cls.getMethod(null, String.class);
+            
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(HtmlHelper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(HtmlHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     @Override
     public void BeginForm(HttpServletRequest request, HttpServletResponse response, String legend) throws IOException
     {
@@ -62,7 +78,7 @@ public class HtmlHelper implements HtmlHelperLocal {
         out.println("<label for=\"" + id + "\">" + label + "</label>");
         out.println("</div>");
         out.println("<div class=\"editor-field\">");
-        out.println("<input id=\""+ id + "\" type=\"text\" />");
+        out.println("<input id=\""+ id + "\"" + " name=\""+ id + "\" type=\"text\" />");
         out.println("</div>");      
     }
     @Override

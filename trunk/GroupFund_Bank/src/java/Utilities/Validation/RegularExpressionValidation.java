@@ -15,7 +15,9 @@ public class RegularExpressionValidation extends Validation {
     private String _validationMsg = "The {0} field is not in a valid {1} format";
     // {0} field name
     // {1} regular expression title (email, url...)
-        
+
+    public RegularExpressionValidation() {
+    }  
     public RegularExpressionValidation(String regEx)
     {
         _regEx = regEx;
@@ -28,7 +30,8 @@ public class RegularExpressionValidation extends Validation {
         
     @Override
     public String getValidationMsg() {
-        return _validationMsg.replace("{1}", _regExTitile);
+        String validationMsg = _validationMsg.replace("{1}", _regExTitile);
+        return "data-val-regex = " + _regEx + " data-val-reg-msg = " + validationMsg;
     }
 
     @Override

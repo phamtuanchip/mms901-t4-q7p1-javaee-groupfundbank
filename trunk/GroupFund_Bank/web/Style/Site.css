@@ -10,13 +10,127 @@
    TODO customize this sample style
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
-
-root { 
+input {
     display: block;
 }
 
-input {
-    display: block;
+a:link, a:visited
+{
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover
+{
+    color: #339933;
+    text-decoration: underline;
+}
+
+a:active
+{
+    color: #227700;
+}
+
+p
+{
+    text-indent: 15px;
+}
+
+body
+{
+    margin: 0 auto;
+    padding: 0;
+    min-width: 600px;
+    max-width: 980px;
+    text-align: center;
+    color: #333;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 0.9em;
+}
+
+.wrapper
+{
+    margin: 0;
+    padding: 5px;
+}
+
+#main-wrapper
+{
+    background: #FFF url('/GroupFund_Bank/Images/Style/mainbgr.png') repeat;
+}
+
+#main
+{
+    border: 1px solid #E5E5E5;
+    text-align: left;
+    background: #FFF;
+}
+
+#title
+{
+    margin: 10px 15px;
+    padding: 5px;
+    border-bottom: #E5E5E5 1px solid;
+}
+
+#mainContent-wrap
+{
+    margin: 0;
+    min-height: 200px;
+}
+#mainContent
+{
+    margin: 15px 30px;
+}
+
+#disclaimer
+{
+    margin: 5px 100px;
+    padding: 25px 25px;
+    text-align: center;
+    border-top: #E5E5E5 1px solid;
+    color: #999;
+    font-size: 0.7em;
+}
+
+.clearfloat
+{
+    clear: both;
+    height: 1px;
+}
+
+.lcolumn
+{
+    float: left;
+}
+
+.hnav ul
+{
+    margin:5px;
+}
+
+.hnav ul li
+{
+    display: inline;
+    margin: 3px 5px;
+}
+
+#global-nav
+{
+    float: right;
+    display: inline;
+    font-weight: bold;
+}
+
+#maincol-left
+{
+    width: 200px;
+    border-right: #009966 1px solid;
+}
+
+#site-nav
+{
+    
 }
 
 
@@ -24,18 +138,4 @@ input {
 .err
 {
     color: #F00;
-}
-
-body
-{
-    margin: 0;
-    padding: 0;
-}
-
-#main-wrapper
-{
-    width: 900px;
-    margin: 0 auto;
-    padding: 0;
-    border: 1px solid #E5E5E5;
 }
